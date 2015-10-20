@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.specktre.mvp.MyClass;
+
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        MyClass ccc = new MyClass();
+        ccc.doSomething();
     }
 
     @Override
