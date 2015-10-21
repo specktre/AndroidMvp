@@ -5,10 +5,13 @@ import com.specktre.domain.rx.RxSchedulersProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
 public class SplashPresenter extends RxMvpBasePresenter<SplashView> {
 
+    @Inject
     public SplashPresenter(RxSchedulersProvider rxSchedulersProvider) {
         super(rxSchedulersProvider);
     }

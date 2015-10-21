@@ -21,6 +21,7 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
 
     @Bind(R.id.splash_text_view)
     TextView splashTextView;
+    private SplashComponent splashComponent;
 
     public SplashActivityFragment() {
     }
@@ -44,6 +45,8 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        splashComponent = AndroidMvpApplication.component().plus(new SplashModule());
+        splashComponent.inject(this);
     }
 
     @Override

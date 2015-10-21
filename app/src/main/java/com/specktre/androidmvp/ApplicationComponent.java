@@ -14,4 +14,6 @@ public interface ApplicationComponent {
             return DaggerApplicationComponent.builder().mainModule(new MainModule(app)).build();
         }
     }
+
+    SplashComponent plus(SplashModule splashModule);
 }
