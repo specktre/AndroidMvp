@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.specktre.mvp.MyClass;
+import com.specktre.domain.TestJava8;
 
 public class SplashActivity extends Activity {
 
@@ -13,8 +13,8 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        MyClass ccc = new MyClass();
-        ccc.doSomething();
+        TestJava8 testJava8 = new TestJava8();
+        testJava8.test();
     }
 
     @Override
