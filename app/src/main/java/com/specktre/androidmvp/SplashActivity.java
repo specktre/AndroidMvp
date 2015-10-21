@@ -2,12 +2,13 @@ package com.specktre.androidmvp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.specktre.domain.TestJava8;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,4 +27,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-annotations:23.1.0'
     compile 'com.hannesdorfmann.mosby:mvp-common:2.0.0'
+    compile 'io.reactivex:rxjava:1.0.14'
 }
