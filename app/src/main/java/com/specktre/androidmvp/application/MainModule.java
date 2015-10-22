@@ -2,7 +2,11 @@ package com.specktre.androidmvp.application;
 
 import android.app.Application;
 
+import com.specktre.androidmvp.WorldCodeRepoApiProvider;
+import com.specktre.androidmvp.bitbucket.BitbucketApi;
+import com.specktre.androidmvp.github.GithubApi;
 import com.specktre.androidmvp.scopes.ApplicationScope;
+import com.specktre.domain.coderepo.CodeRepoApiProvider;
 import com.specktre.domain.rx.RxSchedulersProvider;
 
 import dagger.Module;
@@ -40,5 +44,11 @@ public class MainModule {
                 return AndroidSchedulers.mainThread();
             }
         };
+    }
+
+    @ApplicationScope
+    @Provides
+    protected CodeRepoApiProvider provideCodeRepoApiProvider(GithubApi githubApi, BitbucketApi bitbucketApi) {
+        return new WorldCodeRepoApiProvider(githubApi, bitbucketApi);
     }
 }

@@ -1,6 +1,5 @@
 package com.specktre.androidmvp;
 
-import com.specktre.androidmvp.scopes.ApplicationScope;
 import com.specktre.androidmvp.bitbucket.BitbucketApi;
 import com.specktre.androidmvp.bitbucket.BitbucketCodeRepoApi;
 import com.specktre.androidmvp.github.GithubApi;
@@ -9,15 +8,11 @@ import com.specktre.domain.coderepo.CodeRepoApi;
 import com.specktre.domain.coderepo.CodeRepoApiProvider;
 import com.specktre.domain.coderepo.CodeRepoCompany;
 
-import javax.inject.Inject;
-
-@ApplicationScope
 public class WorldCodeRepoApiProvider implements CodeRepoApiProvider {
 
     private final GithubApi githubApi;
     private final BitbucketApi bitbucketApi;
 
-    @Inject
     public WorldCodeRepoApiProvider(GithubApi githubApi, BitbucketApi bitbucketApi) {
         this.githubApi = githubApi;
         this.bitbucketApi = bitbucketApi;

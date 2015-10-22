@@ -5,6 +5,8 @@ import com.specktre.androidmvp.github.GithubModule;
 import com.specktre.androidmvp.scopes.ApplicationScope;
 import com.specktre.androidmvp.splash.SplashComponent;
 import com.specktre.androidmvp.splash.SplashModule;
+import com.specktre.androidmvp.userselection.UserSelectionComponent;
+import com.specktre.androidmvp.userselection.UserSelectionModule;
 
 import dagger.Component;
 
@@ -22,4 +24,6 @@ public interface ApplicationComponent {
     }
 
     SplashComponent plus(SplashModule splashModule);
+
+    UserSelectionComponent plus(UserSelectionModule userSelectionModule);
 }

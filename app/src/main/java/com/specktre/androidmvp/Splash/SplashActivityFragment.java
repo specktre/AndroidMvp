@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
 import com.specktre.androidmvp.R;
 import com.specktre.androidmvp.application.AndroidMvpApplication;
+import com.specktre.androidmvp.userselection.UserSelectionActivity;
 import com.specktre.domain.splash.SplashPresenter;
 import com.specktre.domain.splash.SplashView;
 
@@ -19,6 +20,7 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
 
     @Bind(R.id.splash_text_view)
     TextView splashTextView;
+
     private SplashComponent splashComponent;
 
     public SplashActivityFragment() {
@@ -58,5 +60,6 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
 
     @Override
     public void proceedToApplication() {
+        startActivity(UserSelectionActivity.newIntent(this.getContext()));
     }
 }
