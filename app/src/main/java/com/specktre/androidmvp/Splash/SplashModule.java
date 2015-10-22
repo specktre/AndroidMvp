@@ -1,4 +1,4 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.splash;
 
 import dagger.Module;
 

@@ -1,6 +1,8 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.application;
 
 import android.app.Application;
+
+import com.specktre.androidmvp.application.ApplicationComponent;
 
 public class AndroidMvpApplication extends Application {
 

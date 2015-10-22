@@ -3,7 +3,7 @@ package com.specktre.domain.rx;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
-public class RxMvpBasePresenter<V extends MvpView> extends MvpBasePresenter<V> {
+public abstract class RxMvpBasePresenter<V extends MvpView> extends MvpBasePresenter<V> {
 
     private RxSchedulersProvider rxSchedulersProvider;
 

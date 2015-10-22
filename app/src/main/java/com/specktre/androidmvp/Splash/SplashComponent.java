@@ -1,5 +1,6 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.splash;
 
+import com.specktre.androidmvp.scopes.FragmentScope;
 import com.specktre.domain.splash.SplashPresenter;
 
 import dagger.Subcomponent;

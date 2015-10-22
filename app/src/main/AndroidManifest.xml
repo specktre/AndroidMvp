@@ -3,13 +3,13 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".AndroidMvpApplication"
+        android:name=".application.AndroidMvpApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -1,4 +1,4 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.splash;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,15 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
-import com.specktre.domain.rx.RxSchedulersProvider;
+import com.specktre.androidmvp.R;
+import com.specktre.androidmvp.application.AndroidMvpApplication;
 import com.specktre.domain.splash.SplashPresenter;
 import com.specktre.domain.splash.SplashView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresenter> implements SplashView {
 
@@ -28,17 +26,7 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
 
     @Override
     public SplashPresenter createPresenter() {
-        return new SplashPresenter(new RxSchedulersProvider() {
-            @Override
-            public Scheduler subscribeOn() {
-                return Schedulers.io();
-            }
-
-            @Override
-            public Scheduler observeOn() {
-                return AndroidSchedulers.mainThread();
-            }
-        });
+        return splashComponent.provideSplashPresenter();
     }
 
     @Override
@@ -69,7 +57,6 @@ public class SplashActivityFragment extends MvpFragment<SplashView, SplashPresen
     }
 
     @Override
-    public void proceedToDashboard() {
-        splashTextView.setText("Dashboard");
+    public void proceedToApplication() {
     }
 }

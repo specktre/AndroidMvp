@@ -1,7 +1,8 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.application;
 
 import android.app.Application;
 
+import com.specktre.androidmvp.scopes.ApplicationScope;
 import com.specktre.domain.rx.RxSchedulersProvider;
 
 import dagger.Module;

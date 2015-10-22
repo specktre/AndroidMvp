@@ -6,5 +6,5 @@ public interface SplashView extends MvpView {
 
     void displaySplashMessage(String splashMessage);
 
-    void proceedToDashboard();
+    void proceedToApplication();
 }

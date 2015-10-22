@@ -23,7 +23,7 @@ public class SplashPresenter extends RxMvpBasePresenter<SplashView> {
                   .subscribeOn(getRxSchedulersProvider().subscribeOn())
                   .observeOn(getRxSchedulersProvider().observeOn())
                   .subscribe(value -> {
-                      proceedToDashboard();
+                      proceedToApplication();
                   });
     }
 
@@ -31,7 +31,7 @@ public class SplashPresenter extends RxMvpBasePresenter<SplashView> {
         runIfViewAttached(() -> getView().displaySplashMessage("Welcome to our MVP playground!"));
     }
 
-    private void proceedToDashboard() {
-        runIfViewAttached(() -> getView().proceedToDashboard());
+    private void proceedToApplication() {
+        runIfViewAttached(() -> getView().proceedToApplication());
     }
 }

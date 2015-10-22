@@ -1,10 +1,11 @@
-package com.specktre.androidmvp;
+package com.specktre.androidmvp.application;
 
 import android.app.Application;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.specktre.androidmvp.scopes.ApplicationScope;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -13,17 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit.Endpoint;
-import retrofit.Endpoints;
-import retrofit.RestAdapter;
 import retrofit.client.Client;
 import retrofit.client.OkClient;
-import retrofit.converter.GsonConverter;
 
 @Module
 public class NetworkModule {
-
-    public static final String GITHUB_API_URL = "https://api.github.com";
 
     static final int DISK_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
 
@@ -41,31 +36,8 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    Endpoint provideEndpoint() {
-        return Endpoints.newFixedEndpoint(GITHUB_API_URL);
-    }
-
-    @Provides
-    @ApplicationScope
-    GithubService provideGithubService(RestAdapter restAdapter) {
-        return restAdapter.create(GithubService.class);
-    }
-
-    @Provides
-    @ApplicationScope
     Client provideClient(Application app) {
         return new OkClient(createOkHttpClient(app));
-    }
-
-    @Provides
-    @ApplicationScope
-    RestAdapter provideRestAdapter(Endpoint endpoint, Client client, Gson gson) {
-        return new RestAdapter.Builder()
-                .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
-                .setClient(client)
-                .setConverter(new GsonConverter(gson))
-                .setEndpoint(endpoint)
-                .build();
     }
 
     @Provides
