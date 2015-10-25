@@ -1,9 +1,13 @@
 package com.specktre.androidmvp.userselection;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,6 +23,7 @@ import com.specktre.domain.userselection.UserSelectionView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.subjects.PublishSubject;
 
 public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSelectionView, UserSelectionPresenter> implements UserSelectionView {
 
@@ -34,10 +39,11 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     RadioButton bitbucketRadioButton;
 
     @Bind(R.id.user_status_text_view)
-    TextView user_status_text_view;
+    TextView userStatusTextView;
 
     @Bind(R.id.user_selection_next_button)
     Button nextButton;
+    private PublishSubject<String> usernameChangeEvents;
 
     public UserSelectionActivityFragment() {
     }
@@ -63,6 +69,7 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
         setRetainInstance(true);
         userSelectionComponent = AndroidMvpApplication.component().plus(new UserSelectionModule());
         userSelectionComponent.inject(this);
+        usernameChangeEvents = PublishSubject.create();
     }
 
     @Override
@@ -71,6 +78,26 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
         View view = inflater.inflate(R.layout.fragment_user_selection, container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.whenUsernameChanges(usernameChangeEvents);
+        usernameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                usernameChangeEvents.onNext(usernameEditText.getText().toString());
+            }
+        });
     }
 
     @OnClick(R.id.github_radiobutton)
@@ -91,5 +118,24 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     @Override
     public void allowUsernameSelection() {
         usernameEditText.setEnabled(true);
+        usernameEditText.setHint("");
+    }
+
+    @Override
+    public void displayUserIsFoundAndHasPublicRepos() {
+        userStatusTextView.setTextColor(Color.GREEN);
+        userStatusTextView.setText("User found and has public repos!");
+    }
+
+    @Override
+    public void displayErrorUserHasNoPublicRepos() {
+        userStatusTextView.setTextColor(Color.parseColor("#FFA500"));
+        userStatusTextView.setText("User has no public repos!");
+    }
+
+    @Override
+    public void displayErrorUserIsNotFound() {
+        userStatusTextView.setTextColor(Color.RED);
+        userStatusTextView.setText("User not found!");
     }
 }

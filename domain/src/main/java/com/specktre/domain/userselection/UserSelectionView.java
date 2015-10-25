@@ -6,4 +6,14 @@ public interface UserSelectionView extends MvpView {
     void disallowUsernameSelection();
 
     void allowUsernameSelection();
+
+    void displayUserIsFoundAndHasPublicRepos();
+
+    void displayErrorUserHasNoPublicRepos();
+
+    void displayErrorUserIsNotFound();
+
+    void allowProceedingToNextStep();
+
+    void disallowProceedingToNextStep();
 }

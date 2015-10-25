@@ -25,10 +25,17 @@
             android:id="@+id/username_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter username"/>
+            android:hint="Select provider"
+            android:inputType="textEmailAddress"
+            />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Provider:"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -55,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Select Provider and enter username"/>
+        android:text=""/>
 
     <Button
         android:id="@+id/user_selection_next_button"
