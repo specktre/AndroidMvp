@@ -16,6 +16,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.specktre.androidmvp.R;
 import com.specktre.androidmvp.application.AndroidMvpApplication;
+import com.specktre.androidmvp.usercoderepos.UserCodeReposActivity;
 import com.specktre.domain.userselection.UserSelectionPresenter;
 import com.specktre.domain.userselection.UserSelectionView;
 
@@ -108,6 +109,11 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     @OnClick(R.id.bitbucket_radiobuttion)
     public void onBitbucketRadioButtonClick(View view) {
         presenter.bitbucketSelected();
+    }
+
+    @OnClick(R.id.user_selection_next_button)
+    public void onNextButtonClick(View view) {
+        startActivity(UserCodeReposActivity.newIntent(getContext(), usernameEditText.getText().toString()));
     }
 
     @Override

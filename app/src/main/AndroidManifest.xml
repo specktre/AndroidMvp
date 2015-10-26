@@ -23,6 +23,10 @@
             android:name=".userselection.UserSelectionActivity"
             android:label="@string/title_activity_user_selection" >
         </activity>
+        <activity
+            android:name=".usercoderepos.UserCodeReposActivity"
+            android:label="@string/title_activity_user_code_repos" >
+        </activity>
     </application>
 
 </manifest>
