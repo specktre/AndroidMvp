@@ -34,7 +34,7 @@ public class UserCodeReposActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if(fragment == null) {
-            fragment = new UserCodeReposActivityFragment();
+            fragment = UserCodeReposActivityFragment.newFragment(getIntent().getStringExtra(USERNAME_EXTRA));
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
     }
