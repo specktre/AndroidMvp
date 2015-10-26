@@ -49,7 +49,9 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
 
     @Override
     public UserSelectionPresenter createPresenter() {
-        return userSelectionComponent.provideUserSelectionPresenter();
+        UserSelectionPresenter userSelectionPresenter = userSelectionComponent.provideUserSelectionPresenter();
+        userSelectionPresenter.whenUsernameChanges(usernameChangeEvents);
+        return userSelectionPresenter;
     }
 
     @Override
@@ -82,7 +84,6 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.whenUsernameChanges(usernameChangeEvents);
         usernameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
