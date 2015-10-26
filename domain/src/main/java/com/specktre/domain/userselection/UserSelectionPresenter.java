@@ -26,12 +26,6 @@ public class UserSelectionPresenter extends RxMvpBasePresenter<UserSelectionView
         this.codeRepoApiProvider = codeRepoApiProvider;
     }
 
-    @Override
-    public void attachView(UserSelectionView view) {
-        super.attachView(view);
-        view.disallowUsernameSelection();
-    }
-
     public void githubSelected() {
         selectedCodeRepoApi = codeRepoApiProvider.of(CodeRepoCompany.GITHUB);
         runIfViewAttached(() -> getView().allowUsernameSelection());

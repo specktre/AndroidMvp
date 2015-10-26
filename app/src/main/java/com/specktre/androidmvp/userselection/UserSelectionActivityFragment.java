@@ -113,39 +113,46 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     @Override
     public void disallowUsernameSelection() {
         usernameEditText.setEnabled(false);
+        ((UserSelectionViewState) viewState).setUsernameEditTextEnabled(false);
     }
 
     @Override
     public void allowUsernameSelection() {
         usernameEditText.setEnabled(true);
         usernameEditText.setHint("");
+        ((UserSelectionViewState) viewState).setUsernameEditTextEnabled(true);
     }
 
     @Override
     public void displayUserIsFoundAndHasPublicRepos() {
         userStatusTextView.setTextColor(Color.GREEN);
         userStatusTextView.setText("User found and has public repos!");
+        ((UserSelectionViewState)viewState).setUserIsFoundAndHasPublicRepos();
     }
 
     @Override
     public void displayErrorUserHasNoPublicRepos() {
         userStatusTextView.setTextColor(Color.parseColor("#FFA500"));
         userStatusTextView.setText("User has no public repos!");
+        ((UserSelectionViewState)viewState).setUserHasNoPublicRepos();
     }
 
     @Override
     public void displayErrorUserIsNotFound() {
         userStatusTextView.setTextColor(Color.RED);
         userStatusTextView.setText("User not found!");
+        ((UserSelectionViewState)viewState).setUserNotFound();
     }
 
     @Override
     public void allowProceedingToNextStep() {
         nextButton.setEnabled(true);
+        ((UserSelectionViewState) viewState).setNextButtonEnabled(true);
     }
 
     @Override
     public void disallowProceedingToNextStep() {
         nextButton.setEnabled(false);
+        ((UserSelectionViewState) viewState).setNextButtonEnabled(false);
     }
 }
