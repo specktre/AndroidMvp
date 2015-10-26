@@ -11,7 +11,7 @@ public class UserSelectionViewState implements ViewState<UserSelectionView> {
         HAS_PUBLIC_REPOS, NO_PUBLIC_REPOS, USER_NOT_FOUND
     }
 
-    private UserRepoState userRepoState;
+    private UserRepoState userRepoState = UserRepoState.USER_NOT_FOUND;
 
     @Override
     public void apply(UserSelectionView userSelectionView, boolean retained) {
