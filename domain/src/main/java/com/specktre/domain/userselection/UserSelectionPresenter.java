@@ -18,6 +18,7 @@ public class UserSelectionPresenter extends RxMvpBasePresenter<UserSelectionView
     private CodeRepoApiProvider codeRepoApiProvider;
     private CodeRepoApi selectedCodeRepoApi;
     private Subscription subscriptionOnUsernameChange;
+    private String selectedUsername;
 
     @Inject
     public UserSelectionPresenter(RxSchedulersProvider rxSchedulersProvider, CodeRepoApiProvider codeRepoApiProvider) {
@@ -34,11 +35,17 @@ public class UserSelectionPresenter extends RxMvpBasePresenter<UserSelectionView
     public void githubSelected() {
         selectedCodeRepoApi = codeRepoApiProvider.of(CodeRepoCompany.GITHUB);
         runIfViewAttached(() -> getView().allowUsernameSelection());
+        if(selectedUsername != null) {
+            reactOnUsernameChange(selectedUsername);
+        }
     }
 
     public void bitbucketSelected() {
         selectedCodeRepoApi = codeRepoApiProvider.of(CodeRepoCompany.BITBUCKET);
         runIfViewAttached(() -> getView().allowUsernameSelection());
+        if(selectedUsername != null) {
+            reactOnUsernameChange(selectedUsername);
+        }
     }
 
     public void whenUsernameChanges(Observable<String> usernameChangeEvents) {
@@ -52,6 +59,7 @@ public class UserSelectionPresenter extends RxMvpBasePresenter<UserSelectionView
     }
 
     private void reactOnUsernameChange(String newUsername) {
+        selectedUsername = newUsername;
         selectedCodeRepoApi.getUserRepos(newUsername)
                            .subscribeOn(getRxSchedulersProvider().subscribeOn())
                            .observeOn(getRxSchedulersProvider().observeOn())

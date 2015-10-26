@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -137,5 +136,15 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
     public void displayErrorUserIsNotFound() {
         userStatusTextView.setTextColor(Color.RED);
         userStatusTextView.setText("User not found!");
+    }
+
+    @Override
+    public void allowProceedingToNextStep() {
+        nextButton.setEnabled(true);
+    }
+
+    @Override
+    public void disallowProceedingToNextStep() {
+        nextButton.setEnabled(false);
     }
 }
