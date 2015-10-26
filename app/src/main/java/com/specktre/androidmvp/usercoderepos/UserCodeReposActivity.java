@@ -3,11 +3,16 @@ package com.specktre.androidmvp.usercoderepos;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.specktre.androidmvp.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class UserCodeReposActivity extends AppCompatActivity {
 
@@ -19,10 +24,19 @@ public class UserCodeReposActivity extends AppCompatActivity {
         return intent;
     }
 
+    @Bind(R.id.fragment_container)
+    FrameLayout fragmentContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_code_repos);
+        ButterKnife.bind(this);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if(fragment == null) {
+            fragment = new UserCodeReposActivityFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
+        }
     }
 
     @Override
