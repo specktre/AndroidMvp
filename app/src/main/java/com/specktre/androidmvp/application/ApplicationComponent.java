@@ -1,5 +1,7 @@
 package com.specktre.androidmvp.application;
 
+import com.specktre.androidmvp.CodeRepoComponent;
+import com.specktre.androidmvp.CodeRepoModule;
 import com.specktre.androidmvp.bitbucket.BitbucketModule;
 import com.specktre.androidmvp.github.GithubModule;
 import com.specktre.androidmvp.scopes.ApplicationScope;
@@ -26,4 +28,6 @@ public interface ApplicationComponent {
     SplashComponent plus(SplashModule splashModule);
 
     UserSelectionComponent plus(UserSelectionModule userSelectionModule);
+
+    CodeRepoComponent plus(CodeRepoModule codeRepoModule);
 }

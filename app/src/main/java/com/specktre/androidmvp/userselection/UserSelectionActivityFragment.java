@@ -113,6 +113,7 @@ public class UserSelectionActivityFragment extends MvpViewStateFragment<UserSele
 
     @OnClick(R.id.user_selection_next_button)
     public void onNextButtonClick(View view) {
+        AndroidMvpApplication.createCodeRepoComponent(presenter.getSelectedCodeRepoProvider());
         startActivity(UserCodeReposActivity.newIntent(getContext(), usernameEditText.getText().toString()));
     }
 
