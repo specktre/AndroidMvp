@@ -9,15 +9,14 @@ import android.view.ViewGroup;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
 import com.specktre.androidmvp.R;
 import com.specktre.androidmvp.application.AndroidMvpApplication;
-import com.specktre.domain.coderepo.CodeRepo;
 import com.specktre.domain.usercoderepos.UserCodeReposPresenter;
 import com.specktre.domain.usercoderepos.UserCodeReposView;
-
-import java.util.List;
+import com.specktre.domain.usercoderepos.UserCodingLifeViewModel;
 
 import butterknife.ButterKnife;
 
-public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLayout, List<CodeRepo>, UserCodeReposView, UserCodeReposPresenter>
+public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLayout, UserCodingLifeViewModel, UserCodeReposView,
+        UserCodeReposPresenter>
         implements UserCodeReposView {
 
     public static final String USERCODEREPOS_USERNAME_FRAGMENT_ARG = "com.specktre.androidmvp.usercoderepos.username_fragment_arg";
@@ -42,7 +41,7 @@ public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLa
 
     @Override
     protected String getErrorMessage(Throwable throwable, boolean pullToRefresh) {
-        return null;
+        return throwable.toString();
     }
 
     @Override
@@ -63,12 +62,17 @@ public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLa
     }
 
     @Override
-    public void setData(List<CodeRepo> data) {
+    public void setData(UserCodingLifeViewModel data) {
 
     }
 
     @Override
     public void loadData(boolean pullToRefresh) {
 
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 }
