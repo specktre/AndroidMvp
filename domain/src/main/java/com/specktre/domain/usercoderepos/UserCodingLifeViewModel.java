@@ -28,7 +28,7 @@ public class UserCodingLifeViewModel {
         this.isStar = isStar;
     }
 
-    public String isJavaProgrammer() {
-        return isJavaProgrammer();
+    public boolean isJavaProgrammer() {
+        return isJavaProgrammer;
     }
 }

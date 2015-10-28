@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
 import com.specktre.androidmvp.R;
@@ -13,6 +14,7 @@ import com.specktre.domain.usercoderepos.UserCodeReposPresenter;
 import com.specktre.domain.usercoderepos.UserCodeReposView;
 import com.specktre.domain.usercoderepos.UserCodingLifeViewModel;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLayout, UserCodingLifeViewModel, UserCodeReposView,
@@ -22,6 +24,13 @@ public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLa
     public static final String USERCODEREPOS_USERNAME_FRAGMENT_ARG = "com.specktre.androidmvp.usercoderepos.username_fragment_arg";
     private String username;
     private UserCodeReposComponent userCodeReposComponent;
+
+    @Bind(R.id.text_view_is_java_dev)
+    TextView isJavaDevTextView;
+    @Bind(R.id.text_view_is_star)
+    TextView isStar;
+    @Bind(R.id.text_view_name_of_most_rated_repo)
+    TextView mostRatedRepo;
 
     public static UserCodeReposActivityFragment newFragment(String username) {
         UserCodeReposActivityFragment fragment = new UserCodeReposActivityFragment();
@@ -54,6 +63,12 @@ public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLa
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        AndroidMvpApplication.destroyCodeRepoComponent();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_code_repos, container, false);
@@ -63,7 +78,9 @@ public class UserCodeReposActivityFragment extends MvpLceFragment<SwipeRefreshLa
 
     @Override
     public void setData(UserCodingLifeViewModel data) {
-
+        isJavaDevTextView.setText(data.isJavaProgrammer() ? "Is Java programmer" : "Isn't Java programmer");
+        isStar.setText(data.isStar() ? "Is a Star!" : "Is just a normal guy");
+        mostRatedRepo.setText(data.getNameOfMostRatedRepo());
     }
 
     @Override

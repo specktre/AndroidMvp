@@ -44,7 +44,7 @@ public class NetworkModule {
     @ApplicationScope
     Gson provideGson() {
         GsonBuilder gb = new GsonBuilder();
-        gb.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
+        gb.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gb.create();
     }
 }
